@@ -5,18 +5,26 @@ import my from './views/page/my.vue'
 import recharge from './views/page/recharge.vue'
 import withdraw from './views/page/withdraw.vue'
 import leaguer from './views/page/leaguer.vue'
+import information from './views/page/information.vue'
 
 import VueRouter from 'vue-router' 
 import VueResource from 'vue-resource' 
 
+// 注册提示框插件
+import Toast from './components/toast/toast'
+Vue.use(Toast) 
+
 // 引入公共css
 require('!style-loader!css-loader!less-loader!./assets/css/style.less');
 // 接口地址
-Vue.prototype.API = "www.sdgsogds.com"
+Vue.prototype.$api = "www.sdgsogds.com"
 
 //注册两个插件 
 Vue.use(VueResource) 
 Vue.use(VueRouter)
+
+// 设置请求头
+Vue.http.options.emulateJSON = true;
 
 const router = new VueRouter({
   // mode: 'history',
@@ -46,6 +54,11 @@ const router = new VueRouter({
       path: '/leaguer',
       component: leaguer,
       name:'VIP专区'
+    },
+    {
+      path: '/information',
+      component: information,
+      name:'消息详情'
     },
     { path: '*', redirect: '/index'}
   ]

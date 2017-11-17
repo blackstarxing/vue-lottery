@@ -2,17 +2,14 @@
 	<div class="g-ct">
 		<div class="g-vip">
 			<div class="m-leaguer-top m-top" v-if="isLeaguer">
-				<p>到期时间：2017-10-12  17:53:18</p>
+				<p>到期时间：{{endtime}}</p>
 			</div>
 			<div class="m-common-top m-top" v-else></div>
 			<div class="m-rule">
 				<h3>{{isLeaguer?'续费升级':'购买规则'}}</h3>
 				<div class="rules">
 					<p>1.铂金会员一次性购买90天及以上的，66.66元/天，合计2000元/月。</p>
-					<p>2.钻石会员一次性购买90天及以上的，166.66元/天，合计5000元/月。</p>
-					<p>3.铂金会员体验价，150元/天（24小时）。</p>
-					<p>4.充值会员90天起，可按月付款。（例如：于2016年8月10日11:00:00充值铂金会员90天，立即付款2000元，到下个月的9号 11点前，需要再支付2000元以保证您可以正常使用服务。如果超过9号的11点还没有续费，那么下次充值时会扣除应的天数。扣除的天数取决于中间未缴费的时间。11月9号11点之后，充值恢复正常即不扣除天数。）</p>
-					<p>5.铂金会员升级钻石会员时，已享受服务的时间按天收费（见规则1，2），剩余的将以补差价的方式缴费。</p>
+					<p>2.充值会员可按月付款。（例如：于2017年8月10日 11:00:00充值铂金会员30天，立即付款2000元，到下个月的9号11点前，需要再支付2000元以保证您可以正常使用服务。如果超过9号的11点还没有续费，那么下次充值时会扣除应的天数。扣除的天数取决于中间未缴费的时间。11月9号11点之后，充值恢复正常即不扣除天数。）</p>
 				</div>
 			</div>
 			<div class="m-btns" v-if="isLeaguer">
@@ -30,16 +27,16 @@
 					<li>铂金会员资费<span>2000/月</span></li>
 					<li>付款金额<span>{{2000*month}}元</span></li>
 				</ul>
-				<button class="u-vip-btn">确认购买</button>
+				<button class="u-vip-btn" @click="orderLeaguer">确认购买</button>
 				<p>已享受服务时间按天数收费，剩余的将以补差价的方式续费</p>	
 			</div>	
 			<div class="pay-window" v-else>
 				<ul>
 					<li>铂金会员<span>2000/月</span></li>
-					<li>充值数量<span>一个月(30天)</span></li>
-					<li>充值金额<span>2000元</span></li>
+					<li>充值数量<span>{{selectMonth}}</span></li>
+					<li>充值金额<span>{{2000*month}}元</span></li>
 				</ul>
-				<button class="u-vip-btn">确认购买</button>
+				<button class="u-vip-btn" @click="orderLeaguer">确认购买</button>
 				<p>已享受服务时间按天数收费，剩余的将以补差价的方式续费</p>
 			</div>		
 		</div>
@@ -54,11 +51,14 @@
       			isLeaguer:1,
       			show:false,
       			month:1,
-      			selectMonth:'一个月(30天)'
+      			selectMonth:'一个月(30天)',
+      			endtime:''
     		}
   		},
   		mounted:function(){
   			var _this = this;
+  			this.isLeaguer = this.$route.query.isLeaguer?this.$route.query.isLeaguer:0;
+  			this.endtime = this.$route.query.endtime?this.$route.query.endtime:'';
   			new MultiPicker({
 	            "input":"targetInputTime",
 	            "container":"targetContainer",
@@ -89,21 +89,23 @@
 	            	}
 	            }
 	        });
-	        // console.log(this.API)
-	        // this.$http.get(BASE_URL).then(function(response) {
-                
-         //    }, function(response) {
-         //        console.log(response);
-         //    });
   		},
   		methods:{
+  			// 显示
   			showPay:function(type){
   				this.show = true;
+  				this.month = type==1? 3 : 1;
+  				this.selectMonth = type==1? '三个月(90天)' : '一个月(30天)';
   			},
+  			// 隐藏
   			hidePay:function(e){
   				if(e.target.className == 'm-pop'){
   					this.show = false;
   				} 				
+  			},
+  			// 订阅
+  			orderLeaguer:function(){
+  				window.location.href = 'lotteryopen://order?month='+this.month;
   			}
   		}
 	}

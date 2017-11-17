@@ -1,6 +1,7 @@
 <template>
 	<div class="box">
 		<div>{{msg}}</div>
+		<p>{{message}}</p>
     	<router-link to="/my">我的</router-link>
   	</div>
 </template>
@@ -10,6 +11,11 @@
     		return {
       			msg: '欢迎进入娱儿彩站'
     		}
+  		},
+  		props:{
+  			message:{
+  				default:'blackstar'
+  			}
   		}
 	}
 </script>

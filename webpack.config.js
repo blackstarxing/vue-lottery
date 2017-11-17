@@ -4,8 +4,8 @@ var webpack = require('webpack')
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, './static'),
+        publicPath: './static/',
         filename: 'build.js'
     },
     module: {
@@ -68,14 +68,14 @@ if (process.env.NODE_ENV === 'production') {
         hot: true,
         inline: true,
         host:'0.0.0.0',
-        // proxy: {
-        //     '/api': {
-        //         target: 'http://172.16.10.3:8777',
-        //         pathRewrite: {'^/api' : ''},
-        //         // changeOrigin: true,
-        //         secure: false
-        //     }
-        // }
+        proxy: {
+            '/api': {
+                target: 'http://101.132.142.152:8080/yecz-test',
+                pathRewrite: {'^/api' : ''},
+                changeOrigin: true,
+                secure: false
+            }
+        }
     },
     module.exports.devtool = '#eval-source-map'
 }
