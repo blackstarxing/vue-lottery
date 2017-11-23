@@ -11,7 +11,7 @@
 			</div>
 			<div class="m-form">
 				<label for="">提款金额</label>
-				<input type="number" :disabled="!user_info.useraccount" placeholder="请输入提款金额" step="0.01" v-model="withdrawNum" @keyup="updateValue">
+				<input type="number" :disabled="!parseFloat(user_info.useraccount)" placeholder="请输入提款金额" step="0.01" v-model="withdrawNum" @keyup="updateValue">
 			</div>
 			<div class="m-form">
 				<label for="">支付密码</label>

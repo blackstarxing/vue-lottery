@@ -5,7 +5,7 @@ module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './static'),
-        publicPath: './static/',
+        publicPath: '/static/',
         filename: 'build.js'
     },
     module: {
@@ -45,6 +45,8 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
     module.exports.devtool = '#source-map'
+    // 解决后端路径问题
+    module.exports.output.publicPath = './static/'
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({

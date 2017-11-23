@@ -33,9 +33,8 @@
 	        	_this.recharge_num = value;
        		},
        		// 校验
-       		updateValue: function () {
-       			this.recharge_num = 10;
-       			this.isCur = 0;
+       		updateValue: function () {     	
+       			this.recharge_num = 10;		
        			// console.log(this.recharge_num.toString());
 			    this.custom_num = this.custom_num.toString()
 				// 删除两侧的空格符
@@ -56,11 +55,14 @@
 			    }
 			    if(!this.custom_num.toString()){
 			    	this.custom_num = " ";
+       				this.isCur = 0;
+			    }else{
+       				this.isCur = -1;
 			    }
 		    },
 		    // 提交
 		    pay:function(){
-		    	var $money = this.custom_num?parseFloat(this.custom_num):this.recharge_num;
+		    	var $money = this.custom_num.trim()?parseFloat(this.custom_num.trim()):this.recharge_num;
 		    	// console.log($money);
 		    	window.location.href = 'lotteryopen://recharge?money='+$money;
 		    }
