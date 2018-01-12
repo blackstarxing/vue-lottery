@@ -2,23 +2,19 @@
 	<div class="g-ct">
 		<div class="m-withdraw s-wh">
 			<div class="m-form">
-				<label for="">用户名</label>
+				<label for="">商户名</label>
 				{{user_info.username}}
 			</div>
 			<div class="m-form">
-				<label for="">可提现金额</label>
-				{{user_info.useraccount}}元
+				<label for="">机器余额</label>
+				<span class="busi-orange">{{user_info.useraccount}}元</span>
 			</div>
 			<div class="m-form">
-				<label for="">提款金额</label>
-				<input type="number" :disabled="!parseFloat(user_info.useraccount)" placeholder="请输入提款金额" step="0.01" v-model="withdrawNum" @keyup="updateValue">
-			</div>
-			<div class="m-form">
-				<label for="">支付密码</label>
-				<input type="password" placeholder="请输入支付密码" v-model="password">
+				<label for="">充值金额</label>
+				<input type="number" :disabled="!parseFloat(user_info.useraccount)" placeholder="请输入充值金额" step="0.01" v-model="withdrawNum" @keyup="updateValue">
 			</div>
 		</div>
-		<button class="u-submit-btn" :class="withdrawNum>=10&&password?'':'disabled'" @click="withdraw">申请提款</button>
+		<button class="u-submit-btn busi" :class="withdrawNum>=10?'':'disabled'" @click="withdraw">申请充值</button>
 		<div class="m-explain">
 			<h3>提款说明:</h3>
 			<p>1.提现账号必须真实有效；</p>
@@ -111,6 +107,6 @@
 		}
 	}
 	.disabled{
-		background: rgba(214,51,39,0.5);
+		background: rgba(72,162,221,0.5);
 	}
 </style>

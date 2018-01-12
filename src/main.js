@@ -1,11 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
+
+//用户端页面 
 import index from './views/page/index.vue'
-import my from './views/page/my.vue'
 import recharge from './views/page/recharge.vue'
 import withdraw from './views/page/withdraw.vue'
 import leaguer from './views/page/leaguer.vue'
 import information from './views/page/information.vue'
+
+// 商户端页面
+import businessrecharge from './views/businesspage/recharge.vue'
+import machinerecharge from './views/businesspage/machinerecharge.vue'
+import businesswithdraw from './views/businesspage/withdraw.vue'
 
 import VueRouter from 'vue-router' 
 import VueResource from 'vue-resource' 
@@ -36,11 +42,6 @@ const router = new VueRouter({
       name:'首页'
     },
     {
-      path: '/my',
-      component: my,
-      name:'我的'
-    },
-    {
       path: '/recharge',
       component: recharge,
       name:'充值'
@@ -59,6 +60,21 @@ const router = new VueRouter({
       path: '/information',
       component: information,
       name:'消息详情'
+    },
+    {
+      path: '/businessrecharge',
+      component: businessrecharge,
+      name:'充值'
+    },
+    {
+      path: '/machinerecharge',
+      component: machinerecharge,
+      name:'申请充值'
+    },
+    {
+      path: '/businesswithdraw',
+      component: businesswithdraw,
+      name:'提现申请'
     },
     { path: '*', redirect: '/index'}
   ]

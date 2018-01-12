@@ -9,7 +9,7 @@
 	    		<input type="number" step="0.01" v-model="custom_num" @keyup="updateValue">
 	    	</div>
 	  	</div>
-	  	<button class="u-submit-btn" @click="pay">支付宝支付</button>
+	  	<button class="u-submit-btn busi" @click="pay">支付宝支付</button>
 	</div>	
 </template>
 <script>
@@ -96,7 +96,7 @@
 				}
 				&.current{
 					color: #fff;
-					background: #d63327;
+					background: #48a2dd;
 				}
 			}
 		}

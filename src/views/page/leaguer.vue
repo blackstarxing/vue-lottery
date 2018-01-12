@@ -57,7 +57,7 @@
   		},
   		mounted:function(){
   			var _this = this;
-  			this.isLeaguer = this.$route.query.isLeaguer?this.$route.query.isLeaguer:0;
+  			this.isLeaguer = this.$route.query.isLeaguer==0?0:this.$route.query.isLeaguer;
   			this.endtime = this.$route.query.endtime?this.$route.query.endtime:'';
   			new MultiPicker({
 	            "input":"targetInputTime",
@@ -105,7 +105,7 @@
   			},
   			// 订阅
   			orderLeaguer:function(){
-  				window.location.href = 'lotteryopen://order?month='+this.month;
+  				window.location.href = 'lotteryopen://order?month='+this.month+'&amount='+this.month*2000+'&level=1';
   			}
   		}
 	}
